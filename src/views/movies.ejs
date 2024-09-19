@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= movie ? movie.Title : 'Movie Search' %> - Movie Details</title>
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div class="movie-container">
+        <% if (movie && movie.Response === 'True') { %>
+            <!-- Movie details -->
+            <div class="poster">
+                <img src="<%= movie.Poster %>" alt="<%= movie.Title %> Poster">
+            </div>
+            <div class="details">
+                <h1><%= movie.Title %> (<%= movie.Year %>)</h1>
+                <p><strong>Genre:</strong> <%= movie.Genre %></p>
+                <p><strong>Director:</strong> <%= movie.Director %></p>
+                <p><strong>Writer:</strong> <%= movie.Writer %></p>
+                <p><strong>Actors:</strong> <%= movie.Actors %></p>
+                <p><strong>Plot:</strong> <%= movie.Plot %></p>
+                <p><strong>Language:</strong> <%= movie.Language %></p>
+                <p><strong>Country:</strong> <%= movie.Country %></p>
+                <p><strong>Awards:</strong> <%= movie.Awards %></p>
+                <p><strong>Box Office:</strong> <%= movie.BoxOffice %></p>
+                <p><strong>IMDb Rating:</strong> <%= movie.imdbRating %> / 10</p>
+                <p><strong>IMDb Votes:</strong> <%= movie.imdbVotes %></p>
+                <p><strong>Metascore:</strong> <%= movie.Metascore %></p>
+
+                <!-- Ratings Section -->
+                <div class="ratings">
+                    <h3>Ratings</h3>
+                    <ul>
+                        <% movie.Ratings.forEach(function(rating) { %>
+                            <li><strong><%= rating.Source %>:</strong> <%= rating.Value %></li>
+                        <% }) %>
+                    </ul>
+                </div>
+            </div>
+        <% } else { %>
+            <!-- No movie found message -->
+            <div class="no-movie">
+                <h1>No movies found for the search query.</h1>
+                <p>Please try searching for a different movie.</p>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>
